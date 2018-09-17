@@ -50,7 +50,6 @@ import * as monacoHTML from 'file-loader!../lib/html.worker.bundle.js';
 import * as monacoJSON from 'file-loader!../lib/json.worker.bundle.js';
 import * as monacoTS from 'file-loader!../lib/ts.worker.bundle.js';
 
-import { getLanguageService, TextDocument } from "vscode-json-languageservice";
 import { listen, MessageConnection } from 'vscode-ws-jsonrpc';
 import {
     MonacoToProtocolConverter, ProtocolToMonacoConverter,
@@ -88,14 +87,6 @@ function resovleSchema(url: string): Promise<string> {
 
 const m2p = new MonacoToProtocolConverter();
 const p2m = new ProtocolToMonacoConverter();
-const jsonService = getLanguageService({
-//  schemaRequestService: resovleSchema
-  });
-const pendingValidationRequests = new Map<string, number>();
-
-function createDocument(model: monaco.editor.ITextModel) {
-    return TextDocument.create(model.uri.toString(), model.getModeId(), model.getVersionId(), model.getValue());
-}
 
 function createWebSocket(url: string): WebSocket {
     const socketOptions = {

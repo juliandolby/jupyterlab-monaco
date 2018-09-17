@@ -28,7 +28,7 @@
   "scripts": {
     "build": "webpack && tsc",
     "clean": "rimraf lib",
-    "watch": "tsc -w",
+      "watch": "tsc -w",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "engines": {
@@ -48,17 +48,15 @@
     "nodejs": "^0.0.0",
     "normalize-url": "^2.0.1",
     "reconnecting-websocket": "^3.2.2",
-    "vscode-languageclient": "^4.4.0",
-    "vscode-json-languageservice": "^3.1.0",
-    "vscode-languageserver-types": "^3.7.0",
+    "vscode-languageserver": "^4.0.0",
     "vscode-ws-jsonrpc": "^0.0.2-1"
   },
   "devDependencies": {
-    "@types/node": "^7.0.12",
+    "@types/node": "^8.10.29",
     "rimraf": "^2.6.1",
     "typescript": "~2.6.0",
     "webpack": "^4.6.0",
-      "webpack-cli": "^2.0.14",
+    "webpack-cli": "^2.0.14",
     "vscode": "^1.1.21"
   },
   "jupyterlab": {
