@@ -28,7 +28,11 @@
   "scripts": {
     "build": "webpack && tsc",
     "clean": "rimraf lib",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "engines": {
+    "vscode": "^1.25.0"
   },
   "dependencies": {
     "@jupyterlab/application": "^0.18.2",
@@ -37,7 +41,8 @@
     "@jupyterlab/fileeditor": "^0.18.0",
     "cors-anywhere": "^0.4.1",
     "monaco-editor": "^0.14.3",
-    "monaco-languageclient": "^0.6.3",
+    "monaco-editor-core": "^0.14.6",
+    "monaco-languageclient": "^0.9.0",
     "monaco-languages": "^1.5.1",
     "net": "^1.0.2",
     "nodejs": "^0.0.0",
@@ -53,7 +58,8 @@
     "rimraf": "^2.6.1",
     "typescript": "~2.6.0",
     "webpack": "^4.6.0",
-      "webpack-cli": "^2.0.14"
+      "webpack-cli": "^2.0.14",
+    "vscode": "^1.1.21"
   },
   "jupyterlab": {
     "extension": true,

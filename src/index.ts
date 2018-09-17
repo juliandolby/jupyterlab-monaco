@@ -54,8 +54,8 @@ import { getLanguageService, TextDocument } from "vscode-json-languageservice";
 import { listen, MessageConnection } from 'vscode-ws-jsonrpc';
 import {
     MonacoToProtocolConverter, ProtocolToMonacoConverter,
-    BaseLanguageClient, CloseAction, ErrorAction,
-    createMonacoServices, createConnection
+    MonacoLanguageClient, CloseAction, ErrorAction,
+    MonacoServices, createConnection
 } from 'monaco-languageclient';
 
 const ReconnectingWebSocket = require('reconnecting-websocket');
@@ -160,9 +160,10 @@ class MonacoWidget extends Widget {
 
     context.ready.then(() => { this._onContextReady(); });
 
-    const services = createMonacoServices(this.editor);
-    function createLanguageClient(connection: MessageConnection): BaseLanguageClient {
-      return new BaseLanguageClient({
+    MonacoServices.install(this.editor);
+
+    function createLanguageClient(connection: MessageConnection): MonacoLanguageClient {
+      return new MonacoLanguageClient({
         name: "Sample Language Client",
         clientOptions: {
             // use a language id as a document selector
@@ -173,7 +174,6 @@ class MonacoWidget extends Widget {
                 closed: () => CloseAction.DoNotRestart
             }
         },
-        services,
         // create a language client connection from the JSON RPC connection on demand
         connectionProvider: {
             get: (errorHandler, closeHandler) => {
